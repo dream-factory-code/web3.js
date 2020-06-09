@@ -44,7 +44,7 @@ export class TolarAccounts extends Accounts {
         new Method({
             name: "importKeyFile",
             call: "account_importKeyFile",
-            inputFormatter: [(a: any) => a, null, null, null],
+            inputFormatter: [(a: any) => a, null, "", null],
             params: 4,
         }),
         new Method({
@@ -87,11 +87,6 @@ export class TolarAccounts extends Accounts {
             call: "util_getHashHex",
             params: 1,
         }),
-        // new Method({
-        //     name: "signTransaction",
-        //     call: "util_getHashHex",
-        //     params: 1,
-        // }),
     ];
     constructor(private web3: Web3) {
         super(web3);

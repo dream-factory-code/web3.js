@@ -5,32 +5,32 @@ describe("Tolar account", function () {
     let _web3: any = new web3("https://tolar.dream-factory.hr");
     let tolar = _web3.tolar;
     // it("openRemote", async () => {
-    //     let openRemote = await tolar.account.openRemote("newPassword123");
+    //     let openRemote = await tolar.accounts.openRemote("newPassword123");
     // }).timeout(10000);
     // it("listAddresses", async () => {
-    //     let listAddresses = await tolar.account.listAddresses();
+    //     let listAddresses = await tolar.accounts.listAddresses();
     //     expect(listAddresses).to.be.a("array");
     // }).timeout(10000);
     // it("verifyAddress", async () => {
     //     let validAddress = "5484c512b1cf3d45e7506a772b7358375acc571b2930d27deb";
     //     let invalidAddress =
     //         "5484c312b1ca3d45e7506a772b7358375acc571b2930d27deb";
-    //     let testValid = await tolar.account.verifyAddress(validAddress);
-    //     let testInvalid = await tolar.account.verifyAddress(invalidAddress);
+    //     let testValid = await tolar.accounts.verifyAddress(validAddress);
+    //     let testInvalid = await tolar.accounts.verifyAddress(invalidAddress);
 
     //     assert.throws(
-    //         tolar.account.verifyAddress,
+    //         tolar.accounts.verifyAddress,
     //         'Invalid number of parameters for "verifyAddress". Got 0 expected 1!'
     //     );
     //     assert.throws(() => {
-    //         tolar.account.verifyAddress("aa", "bb");
+    //         tolar.accounts.verifyAddress("aa", "bb");
     //     }, 'Invalid number of parameters for "verifyAddress". Got 2 expected 1!');
 
     //     expect(testValid).to.be.true;
     //     expect(testInvalid).to.be.false;
     // });
     // it("createNewAddress", async () => {
-    //     let createNewAddress = await tolar.account.createNewAddress(
+    //     let createNewAddress = await tolar.accounts.createNewAddress(
     //         "aaa",
     //         "myPwd",
     //         "whose pwd?"
@@ -39,7 +39,7 @@ describe("Tolar account", function () {
     //     expect(createNewAddress).to.be.a("string").and.match(/^54*/);
     // }).timeout(30000);
     it("create wallet", async () => {
-        let acc = tolar.account;
+        let acc = tolar.accounts;
         //let newAcc = acc.create();
         //console.log(newAcc.address);
         //let isValid = await acc.verifyAddress(newAcc.address);
@@ -52,7 +52,7 @@ describe("Tolar account", function () {
         // console.log(addressRecoveres);
         //expect(isValid).to.be.true;
 
-        //let wallet = tolar.account.wallet;
+        //let wallet = tolar.accounts.wallet;
         // let receiver = wallet.create(1)[0];
         // console.log("wallet keys", Object.keys(wallet));
         // wallet.save("testPassword");
@@ -109,7 +109,7 @@ describe("Tolar account", function () {
         // newAddresses[0] = acc.privateKeyToAccount(
         //     "0xd7ce009203c5d16d6b5daafa1efb1167a9e4558e88dff0bc14ebd65f3f0fc116"
         // );
-        let acc2 = tolar.account.privateKeyToAccount(
+        let acc2 = tolar.accounts.privateKeyToAccount(
             "0xd7ce009203c5d16d6b5daafa1efb1167a9e4558e88dff0bc14ebd65f3f0fc116"
         );
         console.log(acc2);
@@ -169,8 +169,8 @@ describe("Tolar account", function () {
         // });
         let signedTx = await sender.signTransaction(tx, sender.privateKey);
         console.log(signedTx);
-        let sentSignedTx = await tolar.sendSignedTransaction(signedTx);
-        console.log("signed remote tx\n", sentSignedTx);
+        // let sentSignedTx = await tolar.sendSignedTransaction(signedTx);
+        // console.log("signed remote tx\n", sentSignedTx);
         // //console.log(newAddresses[0].sign);
         // console.log(receiver);
 
@@ -178,15 +178,15 @@ describe("Tolar account", function () {
         console.log(await tolar.getBalance(receiver.address, blockcount - 1));
     }).timeout(30000);
     // it("test import export", async () => {
-    //     let acc = tolar.account;
-    //     let listAddresses = await tolar.account.listAddresses();
+    //     let acc = tolar.accounts;
+    //     let listAddresses = await tolar.accounts.listAddresses();
     //     let pk = await acc.exportKeyFile(listAddresses[0]);
     //     let res = await acc.importKeyFile(pk);
     //     expect(res).to.be.true;
     // });
     // it("list balance per addresses", async () => {
-    //     let acc = tolar.account;
-    //     //let listAddresses = await tolar.account.listAddresses();
+    //     let acc = tolar.accounts;
+    //     //let listAddresses = await tolar.accounts.listAddresses();
     //     let result = await acc.listBalancePerAddress();
     //     console.log(
     //         "addresses with ballance",
@@ -194,4 +194,41 @@ describe("Tolar account", function () {
     //         // result
     //     );
     // }).timeout(10000);
+    // it("accounts change password", async()=>{
+    //      let acc = tolar.accounts;
+    //      //dont know old pwd
+    //      let oldPassword='';
+    //      let newPassword='testChangePw';
+    //     await acc.changePassword(oldPassword, newPassword)
+    // }).timeout(30000)
+    it("send deployed contract transaction", async () => {
+        let accounts = tolar.accounts;
+        // let deployContractTransaction = [
+        //     "5493b8597964a2a7f0c93c49f9e4c4a170e0c42a5eb3beda0d",
+        //     0,
+        //     "supersifra",
+        //     "54000000000000000000000000000000000000000023199e2b",
+        //     6000000,
+        //     1,
+        //     "60806040526040805190810160405280600c81526020017f48656c6c6f20576f726c642100000000000000000000000000000000000000008152506000908051906020019061004f929190610062565b5034801561005c57600080fd5b50610107565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106100a357805160ff19168380011785556100d1565b828001600101855582156100d1579182015b828111156100d05782518255916020019190600101906100b5565b5b5090506100de91906100e2565b5090565b61010491905b808211156101005760008160009055506001016100e8565b5090565b90565b6102d7806101166000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063a413686214610051578063cfae3217146100ba575b600080fd5b34801561005d57600080fd5b506100b8600480360381019080803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919291929050505061014a565b005b3480156100c657600080fd5b506100cf610164565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561010f5780820151818401526020810190506100f4565b50505050905090810190601f16801561013c5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b8060009080519060200190610160929190610206565b5050565b606060008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101fc5780601f106101d1576101008083540402835291602001916101fc565b820191906000526020600020905b8154815290600101906020018083116101df57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024757805160ff1916838001178555610275565b82800160010185558215610275579182015b82811115610274578251825591602001919060010190610259565b5b5090506102829190610286565b5090565b6102a891905b808211156102a457600081600090555060010161028c565b5090565b905600a165627a7a7230582005676cc36787b4b0fdaecadf2525768dca9c2503fb3892aec9082426d9aecdb70029",
+        //     await tolar.getNonce(
+        //         "5493b8597964a2a7f0c93c49f9e4c4a170e0c42a5eb3beda0d"
+        //     ),
+        // ];
+        const nonce = await tolar.getNonce(
+            "5484c512b1cf3d45e7506a772b7358375acc571b2930d27deb"
+        );
+
+        console.log(nonce);
+        let res = await accounts.sendDeployContractTransaction(
+            "5484c512b1cf3d45e7506a772b7358375acc571b2930d27deb",
+            0,
+            "supersifra",
+            6000000,
+            1,
+            "60806040526040805190810160405280600c81526020017f48656c6c6f20576f726c642100000000000000000000000000000000000000008152506000908051906020019061004f929190610062565b5034801561005c57600080fd5b50610107565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106100a357805160ff19168380011785556100d1565b828001600101855582156100d1579182015b828111156100d05782518255916020019190600101906100b5565b5b5090506100de91906100e2565b5090565b61010491905b808211156101005760008160009055506001016100e8565b5090565b90565b6102d7806101166000396000f30060806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063a413686214610051578063cfae3217146100ba575b600080fd5b34801561005d57600080fd5b506100b8600480360381019080803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919291929050505061014a565b005b3480156100c657600080fd5b506100cf610164565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561010f5780820151818401526020810190506100f4565b50505050905090810190601f16801561013c5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b8060009080519060200190610160929190610206565b5050565b606060008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101fc5780601f106101d1576101008083540402835291602001916101fc565b820191906000526020600020905b8154815290600101906020018083116101df57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061024757805160ff1916838001178555610275565b82800160010185558215610275579182015b82811115610274578251825591602001919060010190610259565b5b5090506102829190610286565b5090565b6102a891905b808211156102a457600081600090555060010161028c565b5090565b905600a165627a7a7230582005676cc36787b4b0fdaecadf2525768dca9c2503fb3892aec9082426d9aecdb70029",
+            nonce
+        );
+        console.log("SEND DEPLOYED CONTRACT TX=>", res);
+    }).timeout(30000);
 });

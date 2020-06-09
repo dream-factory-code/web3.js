@@ -14,7 +14,7 @@ export class Tolar {
     defaultBlock: string | number = "latest";
 
     public net = new TolarNet(this.web3);
-    public account = new TolarAccounts(this.web3);
+    public accounts = new TolarAccounts(this.web3);
     methods: Method[];
     constructor(private web3: Web3) {
         this.registerMethods();

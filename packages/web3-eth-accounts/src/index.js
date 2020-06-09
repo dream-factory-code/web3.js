@@ -49,12 +49,6 @@ let fromPrivateFn = Account.fromPrivate;
 let recoverFn = Account.recover;
 var Accounts = function Accounts() {
     (() => {
-        let extendedModule = {
-            test: () => {
-                console.log("TEST: Test called from extended module");
-            },
-        };
-
         let ethAddressToTolarAddress = (ethAddress) => {
             const prefix = "T";
             const prefixHex = utils.toHex(prefix).substr(2);
@@ -188,39 +182,45 @@ Accounts.prototype.signTransactionNew = async function signTransactionNew(
     privateKey,
     callback
 ) {
-    var _this = this;
-    const txHash = await this.getHashHex(tx);
-    const signature = this.privateKeyToAccount(privateKey).sign(
-        "0x" + txHash,
-        privateKey
-    );
-    let toFixedHexPlaces = (hex, places) => {
-        hex = hex.replace(/^0x/, "");
-        while (hex.length < places) {
-            hex = "0" + hex;
-        }
-        console.log(hex);
-        return hex;
-    };
-    const signedTx = {
-        body: tx,
-        sig_data: {
-            hash: txHash,
-            signature:
-                signature.r.substr(2) +
-                signature.s.substr(2) +
-                toFixedHexPlaces(signature.v, 2),
-            signer_id: signature.signer_id,
-        },
-    };
-    return signedTx;
+    //callback = callback || function () {};
+    try {
+        const txHash = await this.getHashHex(tx);
+
+        const signature = this.privateKeyToAccount(privateKey).sign(
+            "0x" + txHash,
+            privateKey
+        );
+        let toFixedHexPlaces = (hex, places) => {
+            hex = hex.replace(/^0x/, "");
+            while (hex.length < places) {
+                hex = "0" + hex;
+            }
+            console.log(hex);
+            return hex;
+        };
+        const signedTx = {
+            body: tx,
+            sig_data: {
+                hash: txHash,
+                signature:
+                    signature.r.substr(2) +
+                    signature.s.substr(2) +
+                    toFixedHexPlaces(signature.v, 2),
+                signer_id: signature.signer_id,
+            },
+        };
+        //callback(null, signedTx);
+        return signedTx;
+    } catch (e) {
+        console.log(e);
+        //callback(e);
+    }
 };
 Accounts.prototype.signTransaction = function signTransaction(
     tx,
     privateKey,
     callback
 ) {
-    console.log(Object.keys(this));
     var _this = this,
         error = false,
         transactionOptions = {},
