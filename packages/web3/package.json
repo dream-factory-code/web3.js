@@ -1,6 +1,6 @@
 {
-    "name": "web3",
-    "version": "1.2.6",
+    "name": "@dreamfactoryhr/web3t",
+    "version": "1.0.1",
     "description": "Ethereum JavaScript API",
     "repository": "https://github.com/ethereum/web3.js",
     "license": "LGPL-3.0",
@@ -46,6 +46,11 @@
             "name": "Jeffery Wilcke",
             "email": "jeffrey.wilcke@ethereum.org",
             "url": "https://github.com/obscuren"
+        },
+        {
+            "name": "Toni Beverin",
+            "email": "toni.beverin@gmail.com",
+            "url": "https://github.com/zyon1"
         }
     ],
     "dependencies": {
@@ -55,6 +60,7 @@
         "web3-eth-personal": "1.2.6",
         "web3-net": "1.2.6",
         "web3-shh": "1.2.6",
+        "web3-tolar": "1.0.4",
         "web3-utils": "1.2.6"
     },
     "devDependencies": {
