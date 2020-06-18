@@ -1,6 +1,6 @@
 {
     "name": "web3-tolar",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Adapter for tolar",
     "main": "dist/index.js",
     "scripts": {
@@ -13,7 +13,7 @@
         "underscore": "^1.10.2",
         "web3-core-method": "^1.2.9",
         "web3-net": "^1.2.9",
-        "web3-tolar-accounts": "^1.2.6"
+        "web3-tolar-accounts": "^1.2.6-1"
     },
     "devDependencies": {
         "@types/chai": "^4.2.11",
