@@ -1,6 +1,6 @@
-import Web3 from "web3";
+import { Method } from 'web3-core-method';
+
 var Net = require("web3-net");
-import { Method } from "web3-core-method";
 var Method = require("web3-core-method");
 var _ = require("underscore");
 
@@ -28,7 +28,7 @@ export class TolarNet extends Net {
             params: 0,
         }),
     ];
-    constructor(private web3: Web3) {
+    constructor(private web3: any) {
         super(web3);
         this.extendNet();
     }

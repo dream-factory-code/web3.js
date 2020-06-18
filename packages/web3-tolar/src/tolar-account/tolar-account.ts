@@ -1,11 +1,9 @@
-import Web3 from 'web3';
 import { Method } from 'web3-core-method';
 
 var Method = require("web3-core-method");
 var _ = require("underscore");
 
-//var Accounts = require("web3-eth-accounts");
-var Accounts = require("../../../web3-tolar-accounts");
+var Accounts = require("web3-tolar-accounts");
 
 export class TolarAccounts extends Accounts {
     methods: Method[] = [
@@ -44,7 +42,7 @@ export class TolarAccounts extends Accounts {
         new Method({
             name: "importKeyFile",
             call: "account_importKeyFile",
-            inputFormatter: [(a: any) => a, null, "", null],
+            inputFormatter: [(a: any) => a, null, (a: any) => a || "", null],
             params: 4,
         }),
         new Method({
@@ -88,7 +86,7 @@ export class TolarAccounts extends Accounts {
             params: 1,
         }),
     ];
-    constructor(private web3: Web3) {
+    constructor(private web3: any) {
         super(web3);
         this.extendAccounts();
     }

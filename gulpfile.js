@@ -44,8 +44,13 @@ var packages = [
     },
     {
         fileName: "web3-eth-accounts",
-        expose: "Web3EthAccounts",
+        expose: "Web3TolarAccounts",
         src: "./packages/web3-eth-accounts/src/index.js",
+    },
+    {
+        fileName: "web3-tolar-accounts",
+        expose: "Web3EthAccounts",
+        src: "./packages/web3-tolar-accounts/src/index.js",
     },
     {
         fileName: "web3-eth-contract",

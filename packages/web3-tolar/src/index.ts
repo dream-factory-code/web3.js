@@ -1,5 +1,3 @@
-import Web3 from 'web3';
-//import web3 from "web3";
 import { Method } from 'web3-core-method';
 
 import { TolarAccounts } from './tolar-account/tolar-account';
@@ -16,7 +14,7 @@ export class Tolar {
     public net = new TolarNet(this.web3);
     public accounts = new TolarAccounts(this.web3);
     methods: Method[];
-    constructor(private web3: Web3) {
+    constructor(private web3: any) {
         this.registerMethods();
     }
 
