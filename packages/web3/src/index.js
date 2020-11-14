@@ -55,9 +55,9 @@ var Web3 = function Web3() {
     this.setProvider = function (provider, net) {
         setProvider.apply(_this, arguments);
 
-        _this.eth.setRequestManager(_this._requestManager);
-        _this.shh.setRequestManager(_this._requestManager);
-        _this.tolar.setRequestManager(_this._requestManager);
+        _this.eth.requestManager = _this._requestManager;
+        _this.shh.requestManager=_this._requestManager;
+        _this.tolar.requestManager=_this._requestManager;
         _this.bzz.setProvider(provider);
 
         return true;

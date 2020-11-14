@@ -1,6 +1,6 @@
 {
     "name": "web3-tolar",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Adapter for tolar",
     "main": "dist/index.js",
     "scripts": {

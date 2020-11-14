@@ -18,6 +18,13 @@ export class Tolar {
         this.registerMethods();
     }
 
+    requestManager() {
+        return (this.web3 as any)._requestManager;
+    }
+    setProvider(provider: string) {
+        return (this.web3 as any).setProvider(provider);
+    }
+
     extendTolar() {
         _.each(this.methods, (method: any) => {
             method.attachToObject(this);
